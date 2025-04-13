@@ -1,0 +1,325 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Пример семантической верстки для лабораторной работы">
+    <title>Лабортароная работа №1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    function isEmpty(username) {
+        if (username.length == 0)
+            return false;
+        else
+            return true;
+    }
+    function isValInp(username) {
+        if (/[^a-яА-Я]/.test(username))
+            return false;
+        else
+            return true;
+    }
+    function valid(email) {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(email);
+    }
+    //////////////////////////////// валидация   ////////////////////////////////////
+    window.onload = function () {
+        const form = document.getElementById("anket_form");
+        const email = document.getElementById("mail");
+        const first_name = document.getElementById("first_name");
+        const midl_name = document.getElementById("midl_name");
+        const last_name = document.getElementById("last_name");
+
+        const emailError = document.querySelector("#mail + span.error");
+        const famError = document.querySelector("#first_name + span.error");
+        const midlError = document.querySelector("#midl_name + span.error");
+        const lastError = document.querySelector("#last_name + span.error");
+
+        first_name.addEventListener("input", function (event) {
+            if (first_name.validity.valid) {
+                famError.textContent = "";
+                famError.className = "error";
+            } else {
+                showErrorInp();
+            }
+
+
+        });
+        midl_name.addEventListener("input", function (event) {
+            if (midl_name.validity.valid) {
+                midlError.textContent = "";
+                midlError.className = "error";
+            } else {
+                showErrorInp();
+            }
+
+
+        });
+        last_name.addEventListener("input", function (event) {
+            if (last_name.validity.valid) {
+                lastError.textContent = "";
+                lastError.className = "error";
+            } else {
+                showErrorInp();
+            }
+
+
+        });
+        email.addEventListener("input", function (event) {
+           
+
+            if (email.validity.valid) {
+                emailError.textContent = "";
+                emailError.className = "error";
+            } else {
+                showError();
+            }
+        });
+
+        form.addEventListener("submit", function (event) {
+            const isValidFirst_name = isValInp(first_name.value)
+            const isEmptyFirst_name = isEmpty(first_name.value);
+            const isValidMidl_name = isValInp(midl_name.value)
+            const isEmptyMidl_name = isEmpty(midl_name);
+            const isValidLast_name = isValInp(last_name.value)
+            const isEmptyLast_name = isEmpty(last_name);
+
+            if ((!isValidFirst_name || !isEmptyFirst_name) || (!isValidMidl_name || !isEmptyMidl_name) || (!isValidLast_name || !isEmptyLast_name)) {
+                showErrorInp();
+                event.preventDefault();
+            }
+            
+            var isValid = valid(email.value)
+            if (email.validity.valid && !isValid) {
+                showError();
+                event.preventDefault();
+            }
+
+        });
+
+        function showError() {
+            var isValid = valid(email.value)
+            if (email.validity.valueMissing) {
+                emailError.textContent = "Вам необходимо ввести адрес электронной почты.";
+            } else if (!isValid) {
+                emailError.textContent = "Введенное значение должно быть адресом электронной почты.";
+            } else if (email.validity.tooShort) {
+
+                emailError.textContent = `Адрес электронной почты должен быть не менее ${email.minLength} символов; вы ввели ${email.value.length}.`;
+            }
+
+            emailError.className = "error active";
+        }
+
+        function showErrorInp() {
+            var isValidFirst_name = isValInp(first_name.value)
+            var isValidMidl_name = isValInp(midl_name.value)
+            var isValidLast_name = isValInp(last_name.value)
+            var lenFam = isEmpty(first_name.value);
+            var lenIm = isEmpty(midl_name.value);
+            var lenOth = isEmpty(last_name.value);
+
+
+            if (lenFam == 0) {
+                famError.textContent = "Вы не заполнили поле фамилия";
+                famError.className = "error active";
+            }
+            if (!isValidFirst_name) {
+                famError.textContent = "Введенное значение должно состоять только из букв";
+                famError.className = "error active";
+            }
+
+            if (lenIm == 0) {
+                midlError.textContent = "Вы не заполнили поле имя";
+                midlError.className = "error active";
+            }
+            if (!isValidMidl_name) {
+                midlError.textContent = "Введенное значение должно состоять только из букв";
+                midlError.className = "error active";
+            }
+
+            if (lenOth == 0) {
+                lastError.textContent = "Вы не заполнили поле отчество";
+                lastError.className = "error active";
+            }
+            if (!isValidLast_name) {
+                lastError.textContent = "Введенное значение должно состоять только из букв";
+                lastError.className = "error active";
+            }
+
+
+
+        }
+
+    }
+    /////////////////////////// END /////////////////////////////////////
+    const getTime = function () {
+        var hour, minute; var time = "";
+        var selectedTime = 0;
+        var selectElement = document.getElementsByName('time_select')[0];
+        var tmr_n = document.getElementsByName('tmr_n')[0];
+        estOffset = selectElement.value;
+        if (estOffset == "") {
+            alert('Не выбран город');
+            tmr_n.innerText = '';
+            return;
+        }
+        const date = new Date(new Date().getTime() + estOffset * 3600000);
+        hour = date.getHours();
+        minute = date.getMinutes();
+        sec = date.getSeconds();
+
+        time = ((hour < 10) ? "0" : "") + hour + " часов";
+        time += ((minute < 10) ? "0" : " ") + minute + " минут";
+        time += ((sec < 10) ? "0" : " ") + sec + " секунд";
+        tmr_n.innerText = time;
+
+    }
+    function handleTimeChange() {
+        const selectElement = document.getElementsByName('time_select')[0];
+        const selectedTime = selectElement.value;
+
+    }
+    function addList() {
+        var a = '<a href="#" style="color: blue;">';
+        var dl = document.getElementsByTagName("dl")[5];
+        var name_maps = document.getElementById("name_maps").value;
+        var a1 = a + name_maps + '</a>'
+        var dl_1 = document.createElement("dl");
+        dl_1.appendChild(document.createTextNode(""));
+        dl_1.innerHTML = a1;
+        dl.appendChild(dl_1);
+
+    }
+
+    var delList = () => {
+        var list = document.getElementsByTagName("dl")[6];
+        list.remove();
+
+
+    }
+    function draw_List() {
+        var h = document.getElementsByTagName("h2")[0];
+        h.style.fontSize = "2.5em";
+
+    }
+
+    function showForm() {
+        document.getElementById("anket_form").hidden = false;
+        document.getElementById("anket_link").hidden = false;
+    }
+
+
+
+
+</script>
+
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <h1>История развития онлайн карт</h1>
+        <p>Лабораторная работа №1 по дисциплине <strong>web-технологии</strong></p>
+    </header>
+    <!-- Навигация -->
+    <nav>
+        <a href="пример верстки.html">Главная</a><a href="hist.html"> История развития электронных карт</a><a
+            href="docs.html" class="current-page">Список источников</a>
+    </nav>
+    <h2 onclick="draw_List()">Список использованных материалов</h2>
+    <dl>
+        <dl><a href="https://www.google.com/maps" style="color: blue;">Google Maps</a></dl>
+        <dl><a href="https://yandex.ru/maps" style="color: blue;">Яндекс.Карты</a></dl>
+        <dl><a href="https://www.openstreetmap.org/" style="color: blue;">OpenStreetMap</a></dl>
+        <dl><a href="https://ru.wikipedia.org/wiki/Веб-картография" style="color: blue;">Вики-страница по веб-картам</a>
+        </dl>
+        <dl><a href="https://gis.krasn.ru/blog/review/history" style="color: blue;">Геопортал</a></dl>
+    </dl>
+    <br />
+    <label for="name_maps">Название:</label>
+    <input type="text" id="name_maps" name="name_maps" size="10" />
+    <br /> <br />
+    <button onclick="addList()">Добавить </button>
+    <button onclick="delList()">Удалить </button>
+    <br /><br /><br />
+
+
+
+    <select name="time_select" onchange="handleTimeChange()">
+        <option value="">-- Выберите город --</option>
+        <option value="0">Москва</option>
+        <option value="2">Екатеринбург</option>
+        <option value="4">Томск</option>
+        <option value="7">Владивосток</option>
+    </select>
+    <h2> Время в выбранном часовом поясе: <span name="tmr_n"> </span> </h2>
+    <button onclick="getTime()"> Показать время </button>
+    <p id="anket_link" onclick="showForm()">Анкета пользователя</p>
+    <HR>
+    <FORM id="anket_form" method="GET" action="cgi-bin/anket.py" hidden>
+        <h3>Заполните форму и нажмите кнопку</H3>
+        <p>
+        <table class="anket">
+            <tr>
+                <th>Фамилия:
+                <td> <input type="text" name="first_name" id="first_name" required minlength="2">
+                    <span class="error" aria-live="polite"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Имя:
+                <td> <input type=text name="midl_name" id="midl_name" required minlength="2">
+                    <span class="error" aria-live="polite"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Отчество:
+                <td> <input type=text name="last_name" id="last_name" required minlength="2">
+                    <span class="error" aria-live="polite"></span>
+                </td>
+            </tr>
+            <th>Рейтинг:
+            <td>
+                <table>
+                    <td><input type="radio" name="sex" value="мужской">Мужской</td>
+                    <td><input type="radio" name="sex" value="женский">Женский</td>
+                </table>
+                <tr>
+                    <th>Должность:
+                    <td><select name="job" class="job">
+                            <option>студент
+                            <option>преподаватель
+                            <option>библиотекарь
+                            <option>другое
+                        </select></td>
+                <tr>
+                    <th>Любимая карта:
+                    <td>
+                        <table class="maps">
+                            <td><input type="checkbox" name="maps" value="Google_Maps">Google Maps</td>
+                            <td><input type="checkbox" name="maps" value="Яндекс">Яндекс.Карты</td>
+                            <td><input type="checkbox" name="maps" value="OpenStreetMap">OpenStreetMap</td>
+                            <td><input type="checkbox" name=maps value="Вики-страница">Вики-страница
+                            </td>
+                            <td><input type="checkbox" name="maps" value="OpenStreetMap">OpenStreetMap</td>
+                        </table>
+                    </td>
+                <tr>
+                    <th>электронная почта:
+                    <td><input type="text" name="email" id="mail" required minlength="8">
+                        <span class="error" aria-live="polite"></span>
+                    </td>
+
+                </tr>
+            <td colspan=2 align=center>
+                <input type="submit" value="ОТПРАВИТЬ">
+
+            </td>
+        </table>
+    </FORM>
+    <HR>
+    <footer>
+        <p style="text-align: center" onclick="draw_Timer()">&copy; 2025 Онлайн карты. Лр1.
+
+        </p>
+</body>

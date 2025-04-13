@@ -1,0 +1,16 @@
+https://pythonworld.ru/web/cgi-1.html
+
+
+=========================================
+cd D:\TEMA\pytest
+
+d:
+
+py serwerpy.py
+
+
+
+http://localhost
+
+http://localhost/cgi-bin/hello.py
+http://localhost/пример верстки.html

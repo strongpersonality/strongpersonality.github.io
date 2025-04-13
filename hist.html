@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Пример семантической верстки для лабораторной работы">
+    <title>Лабортароная работа №1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    const addTableRow=function() {
+        var tbody = document.getElementsByTagName("tbody")[0];
+        var name = document.getElementsByName("name")[0].value;
+        var year = document.getElementsByName("year")[0].value;
+        var dev = document.getElementsByName("dev")[0].value;
+        var avlb = document.getElementsByName("avlb")[0].value;
+        var row = document.createElement("tr");
+        var td1 = document.createElement("td");
+        var td2 = document.createElement("td");
+        var td3 = document.createElement("td");
+        var td4 = document.createElement("td");
+
+        td1.appendChild(document.createTextNode(""));
+        var td2 = document.createElement("td");
+        td1.appendChild(document.createTextNode(name));
+        td2.appendChild(document.createTextNode(year));
+        td3.appendChild(document.createTextNode(dev));
+        td4.appendChild(document.createTextNode(avlb));
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+        row.appendChild(td4);
+
+        tbody.appendChild(row);
+    }
+    const delTableRow = (orig_length) => {
+        var table = document.getElementsByTagName('table')[0];
+        if (table.rows.length >orig_length) {
+            table.deleteRow(table.rows.length-1);
+        }
+
+    }
+    const Color=function(color,size) {
+        var header = document.getElementsByTagName("header")[0];
+        header.style.color = color;
+        header.style.fontSize=size;
+
+    }
+
+
+</script>
+
+<body>
+    
+    <!-- Шапка сайта -->
+    <header onclick="Color('white','1.5em')">
+        <h1>История развития онлайн карт</h1>
+        <p>Лабораторная работа №1 по дисциплине <strong>web-технологии</strong></p>
+    </header>
+    <!-- Навигация -->
+    <nav>
+        <a href="пример верстки.html">Главная</a><a href="hist.html" class="current-page"> История развития электронных
+            карт</a><a href="docs.html">Список источников</a>
+    </nav>
+    <br>
+    <main>
+        <!-- Основное содержимое -->
+        <column_left>
+            <em><strong>Современные веб-карты</strong> – неотъемлемая часть повседневной жизни. Они помогают
+                пользователям ориентироваться в пространстве, находить маршруты, анализировать географические данные и
+                даже прокладывать логистические пути в реальном времени. Однако их путь развития был долгим и
+                насыщенным.</em>
+            <h2>Ранние попытки цифрового картографирования</h2>
+            <p>История онлайн-карт началась задолго до появления Google Maps и других популярных сервисов. В 1960-х
+                годах <abbr title="National Aeronautics and Space Administration">NASA</abbr> и другие организации
+                разрабатывали технологии для спутникового картографирования, но они были доступны только для научных и
+                военных целей.
+                Первыми шагами к веб-картам можно считать <strong>ГИС</strong> (Географические информационные системы),
+                появившиеся в 1970-х. Они позволяли отображать карты в цифровом виде, но требовали мощных компьютеров и
+                специализированного ПО.</p>
+            <p>Появление геопорталов тесно взаимосвязано с развитием сервисов глобальной сети Интернет. Поскольку
+                геопорталы характеризуются относительно высокими требованиями к функциональным возможностям,
+                интерактивному пользовательскому интерфейсу -- в первые годы существования Интернета их практически не
+                было. Однако в настоящее время они появляются как грибы после дождя.<br><br>
+                Чуть более 20 лет назад, в 1989-91 гг. англичанин Тим Бернерс-Ли из Европейской лаборатории по ядерным
+                исследованиям <q>CERN</q> сформулировал основные принципы передачи информации между компьютерами в виде
+                гипертекста, начал реализацию проекта ныне известного как Всемирная паутина (WWW), создал первые
+                веб-сервер и веб-браузер, первые редакции спецификаций URI, HTTP и HTML. К тому моменту времени Интернет
+                уже превратился в самую разветвленную и мощную сеть в мире.
+                <br><br>
+                Предусмотренные предложенными веб-стандартами возможности размещения в Интернете растровых изображений с
+                момента своего появления стали использоваться различными организациями и отдельными специалистами для
+                публикации геоизображений -- карт и атласов, аэро- и космических снимков. Также начали применяться
+                доступные интерактивные средства для их представления и обработки, анимации.<br><br>
+            </p>
+
+        </column_left>
+        <column_right>
+            <h2>Развитие интернет-карт в 1990-х</h2>
+            <p>С появлением интернета в 1990-х годах началось создание первых интерактивных карт. В 1993 году компания
+                Xerox разработала PARC Map Viewer, который позволял пользователям просматривать карты через веб-браузер.
+                Вскоре последовали другие проекты:</p>
+            <dl>
+                <dd><strong>MapQuest (1996)</strong>-первый коммерческий веб-картографический сервис. Он позволял
+                    пользователям искать маршруты и печатать карты.</dd><br>
+                <dd><strong>Yahoo! Maps (1998)</strong>-предложил улучшенную картографическую визуализацию и интеграцию
+                    с другими сервисами Yahoo!.</dd>
+            </dl>
+            <mark style="background-color: white;">Несмотря на эти достижения, карты того времени были статичными
+                изображениями, требовавшими перезагрузки страницы при каждом изменении.</mark>
+            <h2>Революция Google Maps и Web 2.0 (2005)</h2>
+            <p>Настоящая революция в мире веб-карт началась в 2005 году с запуском <strong>Google Maps</strong>.
+                Основные инновации этого сервиса:</p>
+            <dl>
+                <dd><strong>Технология AJAX</strong>, позволявшая перемещать карту без перезагрузки страницы.</dd><br>
+                <dd><strong>Спутниковые снимки</strong>, интегрированные с традиционными картами.</dd><br>
+                <dd><strong>Google Maps API</strong>, благодаря которому разработчики могли встраивать карты в свои
+                    сайты.</dd>
+            </dl>
+            <p>Этот подход быстро сделал Google Maps лидером рынка. Вскоре аналогичные технологии внедрили Microsoft
+                Bing Maps и Apple Maps.</p>
+            <h2>Эволюция и конкуренция (2010-е – настоящее время)</h2>
+
+            <p>После появления Google Maps многие компании начали разрабатывать свои веб-карты, предлагая уникальные
+                функции:</p>
+            <dl>
+                <dd><strong>OpenStreetMap (2004)</strong>– краудсорсинговый проект, предоставляющий бесплатные карты.
+                </dd><br>
+                <dd><strong>Yandex.Карты (2004)</strong>– популярны в России, предлагают детальную информацию о
+                    транспорте и пробках.</dd><br>
+                <dd><strong>2ГИС (2006)</strong>– выделяется подробными картами городов с информацией о компаниях.</dd>
+            </dl>
+            <p>С 2010-х годов началась интеграция веб-карт с дополненной реальностью, ИИ и машинным обучением, что
+                сделало их еще более точными и удобным</p>
+        </column_right>
+    </main>
+    <p>Таблица <strong>запуска</strong> самых популярных онлайн карт:</p>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Название продукта</th>
+                <th>Год запуска</th>
+                <th>Разработчик</th>
+                <th>Доступность</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>MapQuest</td>
+                <td>1996</td>
+
+                <td>MapQuest, Inc.</td>
+                <td rowspan="2">Браузер</td>
+            </tr>
+            <tr>
+                <td>Yahoo! Maps</td>
+                <td>1998</td>
+                <td>Yahoo!</td>
+            </tr>
+            <tr>
+                <td>Google Maps</td>
+                <td>2005</td>
+                <td>Google</td>
+                <td rowspan="2">Браузер, мобильные устройства</td>
+            </tr>
+            <tr>
+                <td>OpenStreetMap</td>
+                <td>2004</td>
+                <td>Сообщество OSM</td>
+            </tr>
+            <tr>
+                <td>Apple Maps</td>
+                <td>2012</td>
+                <td>Apple</td>
+                <td>Мобильные устройства</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <br>
+    
+    <label for="name">Название:</label>
+    <input type="text" id="name" name="name" size="10" />
+    <label for="year">Год запуска:</label>
+    <input type="text" id="year" name="year" size="10" />
+    <label for="dev">Разработчик:</label>
+    <input type="text" id="dev" name="dev" size="10" />
+    <label for="avlb">Доступность:</label>
+    <input type="text" id="avlb" name="avlb" size="10" />
+    <br>
+    <button onclick="addTableRow()">Добавить </button>
+    <button onclick="delTableRow(6)">Удалить </button>
+    <p>Таблица <strong>уникальных фишек</strong> онлайн карт:</p>
+    <table border="1" cellspacing="0" cellpadding="10" onclick="addRow()">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Год запуска</th>
+                <th>Разработчик</th>
+                <th>Уникальная фича</th>
+                <th>Логотип</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Google Maps</td>
+                <td>2005</td>
+                <td>Google</td>
+                <td>Режим Street View</td>
+                <td class="image-cell"><img src="gogl_logo.jpg"></td>
+            </tr>
+            <tr>
+                <td>Яндекс.Карты</td>
+                <td>2004</td>
+
+                <td>Яндекс</td>
+                <td>Интеграция с Яндекс.Такси</td>
+                <td class="image-cell"><img src="yand_logo.png"></td>
+            </tr>
+            <tr>
+                <td>2ГИС</td>
+                <td>2006</td>
+                <td>2ГИС</td>
+                <td>Офлайн-навигатор</td>
+                <td class="image-cell"><img src="2gis_logo.jpg"></td>
+            </tr>
+            <tr>
+                <td>Apple Maps</td>
+                <td>2012</td>
+                <td>Apple</td>
+                <td>Конфиденциальность</td>
+                <td class="image-cell"><img src="apl_logo.jpg"></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center"><strong>Конец таблицы</strong></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <p>Видеоролик онлайн карт</p>
+    <iframe width="480" height="270" src="vid.mp4"></iframe> <!-- Подвал -->
+    <footer>
+        <p>&copy; 2025 Онлайн карты. Лр1.</p>
+        <address>Контакты: <a href="mailto:kumar05@list.ry">kumar05@list.ru</a></address>
+
+    </footer>
+</body>
+
+</html>

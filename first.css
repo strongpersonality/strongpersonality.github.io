@@ -1,0 +1,149 @@
+/* Общие стили */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(90deg, rgb(243, 223, 75), rgb(249, 238, 151), rgb(243, 223, 75)); /*Градиент*/
+    margin: 0;
+    padding: 20px;
+    color: #2d3436;
+}
+
+/* Исправленные стили навигации */
+#nav {
+    text-align: center;
+    margin: 0px 0;
+    /* Добавлены отступы */
+    padding: 0px;
+    border-radius: 25px;
+    transition: transform 0.3s;
+}
+
+hr {
+    height: 2px;
+    background-color: #f0cf4b;
+    border: none;
+}
+
+#clear {
+    clear: both;
+}
+
+#nav a {
+    display: inline-block;
+    transition: transform 0.3s;
+    text-decoration: none;
+    padding: 20px 20px;
+    color: white;
+    border-radius: 25px;
+    margin: 0 10px;
+}
+
+#nav a.current-page {
+    border: 2px solid #e67e22;
+    font-weight: 700;
+    transform: scale(1.1); /* Увеличение при помощи transform*/
+}
+
+#nav a:link {
+    background: #cf9f0c;
+}
+
+#nav a:hover {
+    transform: scale(1.05);
+    background: #fcde65;
+    text-decoration: underline wavy; /*Свойство text-decoration*/
+}
+
+#nav a:visited {
+    background: #f3c716
+}
+
+/* Сложная нумерация списков (вариант 9) */
+ol {
+    counter-reset: section;
+    list-style: none;
+    padding-left: 20px;
+}
+
+ol li::before {
+    counter-increment: section;
+    content: counters(section, ".") ".\00a0";
+    font-weight: bold;
+}
+
+/* Оформление блоков с border-radius */
+#column,
+#col {
+    border-radius: 15px;
+    width: 46%;
+    padding: 10px;
+    margin: 10px;
+    background: #f0cf4b;
+    transition: transform 0.3s;
+}
+
+#column {
+    float: left;
+}
+
+#column:hover {
+    transform: scale(1.01); /* Увеличение при помощи transform*/
+}
+
+#col {
+    float: right;
+}
+
+#col:hover {
+    transform: scale(1.01); /* Увеличение при помощи transform*/
+}
+
+#col img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    text-align: center;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #cf9f0c, #e7c25c); /*Градиент*/
+    padding: 15px 0;
+    margin-bottom:30px;
+    /* Добавлен отступ снизу */
+}
+
+/* Градиентный фон и фильтры для изображений */
+img {
+    border-radius: 8px;
+    filter: sepia(0.2); /*Применен filter*/
+    transition: transform 0.3s;
+    margin: 10px 0px 30px
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+/* Подвал с градиентом */
+#footer {
+    outline: 5px solid #cf9f0c;
+    border-radius: 10px; /*скругленная граница */
+    background: linear-gradient(90deg,rgb(243, 223, 75),rgb(249, 238, 151),rgb(243, 223, 75));/*Градиент*/
+     padding: 20px; /*отступ внутри блока от границ до текста*/
+      margin-top: 30px; /*отступ между блоками*/
+}
+
+/* Исправление отступов */
+#main {
+    margin-top: 20px;
+}
+
+#main p::first-letter {
+    line-height: 0.2;
+    font-size: 2em;
+    color: rgb(255, 145, 0);
+    float: left;
+    margin-right: 0px;
+}
